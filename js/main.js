@@ -5,6 +5,9 @@ const modal_cont = document.querySelector(".modal_cont")
 const close = document.querySelector(".close")
 const modal_content = document.querySelector(".modal_content")
 const oldInfo = document.querySelector(".oldInfo")
+const open_btn = document.querySelector(".open-btn")
+const close_btn = document.querySelector(".close-btn")
+const dataInfo = document.querySelector(".dataInfo")
 
 import { getProducts, getName } from "./service.js";
 
@@ -16,7 +19,7 @@ const saveInfo = (data) => {
 
 const renderOldInof = () => {
     const data = JSON.parse(localStorage.getItem("numbers")) || []
-    oldInfo.innerHTML = data.map((item) => `
+    dataInfo.innerHTML = data.map((item) => `
         <div>
             <img src = "${item.img}" alt= "" />
             <h1>${item.title}</h1>
@@ -51,7 +54,7 @@ const openModal = (data) => {
     const btn_add = document.querySelector(".btn_add")
     btn_add.addEventListener("click", () => {
         saveInfo(data)
-        renderOldInof()
+
     });
 }
 
@@ -72,3 +75,11 @@ close.addEventListener("click", () => {
 })
 
 
+open_btn.addEventListener("click", () => {
+    oldInfo.style.width = "400px";
+    renderOldInof()
+})
+
+close_btn.addEventListener("click", () => {
+    oldInfo.style.width = "0"
+})
